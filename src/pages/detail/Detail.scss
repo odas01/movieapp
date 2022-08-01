@@ -1,0 +1,124 @@
+@use '../../scss/' as *;
+
+.banner {
+    height: 50vh;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        @include overlay();
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-image: linear-gradient(
+            to top,
+            $body-bg,
+            rgba($black-color, 0)
+        );
+    }
+}
+
+.movie-content {
+    @include flex(flex-start, flex-start);
+    max-width: 1160px;
+    margin: -200px auto 0;
+    position: relative;
+    padding: 0 2rem;
+
+    &__poster {
+        flex: 1;
+
+        @include mobile {
+            display: none;
+        }
+
+        &-img {
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: $border-radius;
+            padding-top: 165%;
+        }
+    }
+
+    &__info {
+        width: 70%;
+        padding-left: 2rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        @include mobile {
+            width: 100%;
+            padding-left: 0;
+        }
+
+        & > * ~ * {
+            margin-top: 2rem;
+        }
+
+        .title {
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .genres {
+            & > * ~ * {
+                margin-left: 0.5rem;
+            }
+
+            &__item {
+                padding: 0.5rem 1.5rem;
+                border: 2px solid $white-color;
+                border-radius: $border-radius;
+                font-size: 0.8rem;
+                font-weight: 600;
+                background-color: $body-bg;
+            }
+        }
+        .cast {
+            margin-top: auto;
+        }
+    }
+}
+
+.casts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+
+    &__item {
+        &-img {
+            padding-top: 160px;
+            background-size: cover;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+        }
+
+        &-name {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+.video {
+    margin-bottom: 3rem;
+
+    &__title {
+        margin-bottom: 1.5rem;
+    }
+}
